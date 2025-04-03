@@ -1,36 +1,9 @@
 #include "EventFunctions.h"
-#include<iostream>
-#include<chrono>
+#include <iostream>
+#include <chrono>
 #include <utility>
-Event* addFirst(Event* head, Event* newEvent) {
-    newEvent->nextEvent = head;
-    return newEvent;
-}
 
-Event* addLast(Event* head, Event* newEvent) {
-    if (!head) return newEvent;
-    Event* curr = head;
-    while (curr->nextEvent) {
-        curr = curr->nextEvent;
-    }
-    curr->nextEvent = newEvent;
-    return head;
-}
-
-Event* addSortedByDate(Event* head, Event* newEvent) {
-    if (!head || newEvent->date < head->date) {
-        return addFirst(head, newEvent);
-    }
-    Event* curr = head;
-    while (curr->nextEvent && curr->nextEvent->date < newEvent->date) {
-        curr = curr->nextEvent;
-    }
-    newEvent->nextEvent = curr->nextEvent;
-    curr->nextEvent = newEvent;
-    return head;
-}
-
-Event* addSortedByDate2(Event* head) {
+Event* createEvent(Event* head) {
     std::string newName, newLocation, newFigure, newResult, newDescription;
     int year;
     unsigned day, month;
@@ -57,7 +30,28 @@ Event* addSortedByDate2(Event* head) {
     auto newDate = std::chrono::year_month_day{std::chrono::year{year}, std::chrono::month{month}, std::chrono::day{day}};
     auto newEvent = new Event{newDate, newName, newLocation, newFigure, newResult, newDescription};
 
+    return newEvent;
+}
 
+Event* addFirst(Event* head) {
+    Event *newEvent = createEvent(head);
+    newEvent->nextEvent = head;
+    return newEvent;
+}
+
+Event* addLast(Event* head) {
+    Event *newEvent = createEvent(head);
+    if (!head) return newEvent;
+    Event* curr = head;
+    while (curr->nextEvent) {
+        curr = curr->nextEvent;
+    }
+    curr->nextEvent = newEvent;
+    return head;
+}
+
+Event* addSortedByDate(Event* head) {
+    Event *newEvent = createEvent(head);
     if (!head || newEvent->date < head->date) {
         return addFirst(head, newEvent);
     }
@@ -69,7 +63,6 @@ Event* addSortedByDate2(Event* head) {
     curr->nextEvent = newEvent;
     return head;
 }
-
 
 
 void editEvent(Event* event, std::string newName, std::string newLocation,

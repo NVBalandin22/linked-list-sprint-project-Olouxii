@@ -2,7 +2,7 @@
 #define EVENT_LIST_H
 
 #include "Event.h"
-
+Event* createEvent(Event* head);
 Event* addFirst(Event* head, Event* newEvent);
 
 Event* addLast(Event* head, Event* newEvent);
