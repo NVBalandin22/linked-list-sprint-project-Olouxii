@@ -17,7 +17,7 @@ int main() {
     int userA =  showMainMenu();
     switch (userA) {
         case 1: {
-
+            addFirst(head);
         };
     }
 }

@@ -2,12 +2,14 @@
 #define EVENT_LIST_H
 
 #include "Event.h"
+
 Event* createEvent(Event* head);
-Event* addFirst(Event* head, Event* newEvent);
 
-Event* addLast(Event* head, Event* newEvent);
+Event* addFirst(Event* head);
 
-Event* addSortedByDate(Event* head, Event* newEvent);
+Event* addLast(Event* head);
+
+Event* addSortedByDate(Event* head);
 
 void editEvent(Event* event, std::string newName, std::string newLocation,
                std::string newFigure, std::string newResults, std::string newDescription);
