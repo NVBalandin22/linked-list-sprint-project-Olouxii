@@ -141,31 +141,6 @@ Event* searchByName(Event* head) {
     return nullptr;
 }
 
-/*Event* deleteEvent(Event* head) {
-    const Event* eventToDelete = searchByName(head);
-    if (!head) return nullptr;
-
-    if (head == eventToDelete) {
-        const Event* temp = head;
-        head = head->nextEvent;
-        delete temp;
-        return head;
-    }
-
-    Event* curr = head;
-    while (curr->nextEvent && curr->nextEvent != eventToDelete) {
-        curr = curr->nextEvent;
-    }
-
-    if (curr->nextEvent == eventToDelete) {
-        const Event* temp = curr->nextEvent;
-        curr->nextEvent = curr->nextEvent->nextEvent;
-        delete temp;
-    }
-
-    return head;
-}*/
-
 Event* deleteEvent(Event* head) {
     Event* eventToDelete = searchByName(head);
     if (!head || !eventToDelete) return head;
