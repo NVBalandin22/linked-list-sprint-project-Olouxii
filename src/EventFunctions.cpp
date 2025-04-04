@@ -3,7 +3,11 @@
 #include <chrono>
 #include <utility>
 
-Event* createEvent(Event* head) {
+Event::Event(std::chrono::year_month_day d, std::string n, std::string loc,
+             std::string fig, std::string res, std::string desc)
+    : date(d), name(std::move(n)), location(std::move(loc)), figure(std::move(fig)), results(std::move(res)), description(std::move(desc)), nextEvent(nullptr) {}
+
+Event* createEvent() {
     std::string newName, newLocation, newFigure, newResult, newDescription;
     int year;
     unsigned day, month;
@@ -11,10 +15,10 @@ Event* createEvent(Event* head) {
     std::cout << "Enter event name: ";
     std::getline(std::cin, newName);
 
-    std::cout << "Enter event location: ";
+    std::cout << "Enter event location(s): ";
     std::getline(std::cin, newLocation);
 
-    std::cout << "Enter key figure of the event: ";
+    std::cout << "Enter key figure(s) of the event: ";
     std::getline(std::cin, newFigure);
 
     std::cout << "Enter event result: ";
@@ -23,9 +27,8 @@ Event* createEvent(Event* head) {
     std::cout << "Enter event description: ";
     std::getline(std::cin, newDescription);
 
-    std::cout << "Enter day, month, year: ";
+    std::cout << std::endl << "Enter day, month, year: ";
     std::cin >> day >> month >> year;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     auto newDate = std::chrono::year_month_day{std::chrono::year{year}, std::chrono::month{month}, std::chrono::day{day}};
     auto newEvent = new Event{newDate, newName, newLocation, newFigure, newResult, newDescription};
@@ -33,14 +36,38 @@ Event* createEvent(Event* head) {
     return newEvent;
 }
 
+
+
+void sortEventsByDate(Event*& head) {
+    if (!head || !head->nextEvent) return;
+
+    bool swapped;
+    do {
+        swapped = false;
+        Event** current = &head;
+
+        while ((*current)->nextEvent) {
+            if ((*current)->date > (*current)->nextEvent->date) {
+
+                Event* temp = (*current)->nextEvent;
+                (*current)->nextEvent = temp->nextEvent;
+                temp->nextEvent = *current;
+                *current = temp;
+                swapped = true;
+            }
+            current = &((*current)->nextEvent);
+        }
+    } while (swapped);
+}
+
 Event* addFirst(Event* head) {
-    Event *newEvent = createEvent(head);
+    Event *newEvent = createEvent();
     newEvent->nextEvent = head;
     return newEvent;
 }
 
 Event* addLast(Event* head) {
-    Event *newEvent = createEvent(head);
+    Event *newEvent = createEvent();
     if (!head) return newEvent;
     Event* curr = head;
     while (curr->nextEvent) {
@@ -51,32 +78,43 @@ Event* addLast(Event* head) {
 }
 
 Event* addSortedByDate(Event* head) {
-    Event *newEvent = createEvent(head);
-    if (!head || newEvent->date < head->date) {
-        return addFirst(head, newEvent);
-    }
-    Event* curr = head;
-    while (curr->nextEvent && curr->nextEvent->date < newEvent->date) {
-        curr = curr->nextEvent;
-    }
-    newEvent->nextEvent = curr->nextEvent;
-    curr->nextEvent = newEvent;
+    head = addFirst(head);
+    sortEventsByDate(head);
+
     return head;
 }
 
 
-void editEvent(Event* event, std::string newName, std::string newLocation,
-               std::string newFigure, std::string newResults, std::string newDescription) {
-    if (event) {
-        event->name = std::move(newName);
-        event->location = std::move(newLocation);
-        event->figure = std::move(newFigure);
-        event->results = std::move(newResults);
-        event->description = std::move(newDescription);
+void editEvent(Event*& head) {
+    Event* oldEvent = searchByName(head);
+    Event* newEvent = createEvent();
+    Event* temp = head;
+
+    while (temp) {
+        if (temp == oldEvent) {
+            // Swap the values of the events
+            temp->date = newEvent->date;
+            temp->name = newEvent->name;
+            temp->location = newEvent->location;
+            temp->figure = newEvent->figure;
+            temp->results = newEvent->results;
+            temp->description = newEvent->description;
+            return;
+        }
+        temp = temp->nextEvent;
     }
+    printEvent(temp);
 }
 
-Event* searchByDate(Event* head, std::chrono::year_month_day searchDate) {
+Event* searchByDate(Event* head) {
+
+    int year;
+    unsigned day, month;
+    std::cout << "Enter day, month, year: ";
+    std::cin >> day >> month >> year;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    auto searchDate = std::chrono::year_month_day{std::chrono::year{year}, std::chrono::month{month}, std::chrono::day{day}};
+
     Event* curr = head;
     while (curr) {
         if (curr->date == searchDate) {
@@ -88,7 +126,11 @@ Event* searchByDate(Event* head, std::chrono::year_month_day searchDate) {
 }
 
 
-Event* searchByName(Event* head, const std::string& searchName) {
+Event* searchByName(Event* head) {
+    std::string searchName;
+    std::cout << "Enter Event name: ";
+    std::getline(std::cin, searchName);
+
     Event* curr = head;
     while (curr) {
         if (curr->name == searchName) {
@@ -99,7 +141,8 @@ Event* searchByName(Event* head, const std::string& searchName) {
     return nullptr;
 }
 
-Event* deleteEvent(Event* head, const Event* eventToDelete) {
+/*Event* deleteEvent(Event* head) {
+    const Event* eventToDelete = searchByName(head);
     if (!head) return nullptr;
 
     if (head == eventToDelete) {
@@ -108,8 +151,7 @@ Event* deleteEvent(Event* head, const Event* eventToDelete) {
         delete temp;
         return head;
     }
-//dwr3
- //d
+
     Event* curr = head;
     while (curr->nextEvent && curr->nextEvent != eventToDelete) {
         curr = curr->nextEvent;
@@ -122,7 +164,33 @@ Event* deleteEvent(Event* head, const Event* eventToDelete) {
     }
 
     return head;
+}*/
+
+Event* deleteEvent(Event* head) {
+    Event* eventToDelete = searchByName(head);
+    if (!head || !eventToDelete) return head;
+
+    if (head == eventToDelete) {
+        Event* temp = head;
+        head = head->nextEvent;
+        delete temp;
+        return head;
+    }
+
+    Event* curr = head;
+    while (curr->nextEvent && curr->nextEvent != eventToDelete) {
+        curr = curr->nextEvent;
+    }
+
+    if (curr->nextEvent) {
+        Event* temp = curr->nextEvent;
+        curr->nextEvent = curr->nextEvent->nextEvent;
+        delete temp;
+    }
+
+    return head;
 }
+
 
 
 void printList(const Event* head) {
@@ -134,5 +202,30 @@ void printList(const Event* head) {
                   << static_cast<int>(current->date.year()) << ")\n";
         current = current->nextEvent;
     }
+}
+
+void printEvent(const Event* e) {
+    if (!e) return;
+
+    std::cout << "----------------------------------\n";
+    std::cout << "Name: " << e->name << "\n";
+    std::cout << "Date: "
+              << static_cast<unsigned>(e->date.day()) << "."
+              << static_cast<unsigned>(e->date.month()) << "."
+              << static_cast<int>(e->date.year()) << "\n";
+    std::cout << "Location: " << e->location << "\n";
+    std::cout << "Key Figure: " << e->figure << "\n";
+    std::cout << "Result: " << e->results << "\n";
+    std::cout << "Description: " << e->description << "\n";
+}
+
+
+void printFullList(const Event* head) {
+    const Event* current = head;
+    while (current) {
+        printEvent(current);
+        current = current->nextEvent;
+    }
+    std::cout << "----------------------------------\n";
 }
 

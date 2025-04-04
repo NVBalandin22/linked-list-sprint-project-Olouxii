@@ -3,7 +3,9 @@
 
 #include "Event.h"
 
-Event* createEvent(Event* head);
+Event* createEvent();
+
+void sortEventsByDate(Event*& head);
 
 Event* addFirst(Event* head);
 
@@ -11,15 +13,17 @@ Event* addLast(Event* head);
 
 Event* addSortedByDate(Event* head);
 
-void editEvent(Event* event, std::string newName, std::string newLocation,
-               std::string newFigure, std::string newResults, std::string newDescription);
+void printEvent(const Event* e);
 
-Event* searchByDate(Event* head, std::chrono::year_month_day searchDate);
+void editEvent(Event*& event);
 
-Event* searchByName(Event* head, const std::string& searchName);
+Event* searchByDate(Event* head);
 
-Event* deleteEvent(Event* head, const Event* eventToDelete);
+Event* searchByName(Event* head);
+
+Event* deleteEvent(Event* head);
 
 void printList(const Event* head);
 
+void printFullList(const Event* head);
 #endif // EVENT_LIST_H

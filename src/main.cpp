@@ -1,23 +1,58 @@
 #include <iostream>
 #include <chrono>
+
 #include<EventFunctions.h>
 #include<funcs.h>
-using namespace std;
-int showMainMenu() {
-    cout << "1 Add first event" << endl << "2 Append event" << endl << "3 Add new event and resort list" << endl << "4 Edit event" << endl << "5 Search event by name" << endl << "6 Search event by date" << endl << "7 Delete element" << endl;
-    int user_answer;
-    cin >> user_answer;
-    return user_answer;
 
-}
+using namespace std;
 
 int main() {
     Event* head = nullptr;
-    cout << "Welcome to the OlouXii app" << endl;
-    int userA =  showMainMenu();
-    switch (userA) {
-        case 1: {
-            addFirst(head);
-        };
+    initializeEvents(head);
+    cout << "Welcome to the OlouXii app!" << endl;
+
+    while (true) {
+        switch (showMainMenu()) {
+            case 0: {
+                cout << "Goodbye!\n";
+                return 0;
+            }
+            case 1: {
+                head = addFirst(head);
+                printFullList(head);
+                break;
+            }
+            case 2: {
+                head = addLast(head);
+                printFullList(head);
+                break;
+            }
+            case 3: {
+                head = addSortedByDate(head);
+                printFullList(head);
+                break;
+            }
+            case 4: {
+                editEvent(head);
+                printFullList(head);
+                break;
+            }
+            case 5: {
+                printEvent(searchByName(head));
+                break;
+            }
+            case 6: {
+                printEvent(searchByDate(head));
+                break;
+            }
+            case 7: {
+                head = deleteEvent(head);
+                printFullList(head);
+                break;
+            }
+            default: {
+                cout << "Invalid input. Please try again.\n";
+            }
+        }
     }
 }
