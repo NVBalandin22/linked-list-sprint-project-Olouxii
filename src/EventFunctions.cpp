@@ -77,19 +77,19 @@ Event* createEvent() {
     int year;
     unsigned day, month;
 
-    std::cout << "Enter event name: ";
+    std::cout << "Enter Event name: ";
     std::getline(std::cin, newName);
 
-    std::cout << "Enter event location(s): ";
+    std::cout << "Enter Event location(s): ";
     std::getline(std::cin, newLocation);
 
     std::cout << "Enter key figure(s) of the event: ";
     std::getline(std::cin, newFigure);
 
-    std::cout << "Enter event result: ";
+    std::cout << "Enter Event result: ";
     std::getline(std::cin, newResult);
 
-    std::cout << "Enter event description: ";
+    std::cout << "Enter Event description: ";
     std::getline(std::cin, newDescription);
 
     std::cout << std::endl << "Enter day, month, year: ";
