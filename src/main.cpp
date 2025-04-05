@@ -4,16 +4,21 @@
 #include<EventFunctions.h>
 #include<funcs.h>
 
+
+
 using namespace std;
 
 int main() {
     Event* head = nullptr;
-    initializeEvents(head);
+
     cout << "Welcome to the OlouXii app!" << endl;
+
+    loadEventsFromFile(head);
 
     while (true) {
         switch (showMainMenu()) {
             case 0: {
+                saveEventsToFile(head);
                 cout << "Goodbye!\n";
                 return 0;
             }

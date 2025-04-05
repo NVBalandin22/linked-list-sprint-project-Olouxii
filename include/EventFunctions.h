@@ -3,6 +3,11 @@
 
 #include "Event.h"
 
+
+void saveEventsToFile(Event* head);
+
+void loadEventsFromFile(Event*& head);
+
 Event* createEvent();
 
 void sortEventsByDate(Event*& head);
