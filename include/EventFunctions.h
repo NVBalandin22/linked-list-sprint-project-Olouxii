@@ -3,6 +3,7 @@
 
 #include "Event.h"
 
+void normalizeDate(unsigned& day, unsigned& month, int& year);
 
 void saveEventsToFile(Event* head);
 

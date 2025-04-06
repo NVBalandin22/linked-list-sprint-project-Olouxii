@@ -6,6 +6,48 @@
 #include <fstream>
 #include <sstream>
 
+//#include <chrono>
+
+void normalizeDate(unsigned& day, unsigned& month, int& year) {
+    while (true) {
+        if (std::chrono::year_month_day{
+                std::chrono::year{year},
+                std::chrono::month{month},
+                std::chrono::day{day}
+            }.ok()) {
+            break;
+            }
+
+        std::chrono::year_month ym{std::chrono::year{year}, std::chrono::month{month}};
+        unsigned daysInMonth = static_cast<unsigned>(
+            std::chrono::year_month_day_last{ym / std::chrono::last}.day()
+        );
+
+        int i = static_cast<int>(month);
+
+        if (i > 12) {
+            year += i / 12;
+            i = i % 12;
+            if (i == 0) {
+                i = 12;
+                --year;
+            }
+        }
+        month = static_cast<unsigned>(i);
+
+        if (day > daysInMonth) {
+            month += day / daysInMonth;
+            day = day % daysInMonth;
+            if (day == 0) {
+                day = daysInMonth;
+                --month;
+            }
+        }
+    }
+}
+
+
+
 void initializeEvents(Event*& head) {
     head = new Event({std::chrono::year{2024}, std::chrono::month{5}, std::chrono::day{10}},
                      "Conference", "New York", "Dr. Smith", "Success", "Annual Tech Conference");
@@ -91,32 +133,37 @@ Event::Event(std::chrono::year_month_day d, std::string n, std::string loc,
     : date(d), name(std::move(n)), location(std::move(loc)), figure(std::move(fig)), results(std::move(res)), description(std::move(desc)), nextEvent(nullptr) {}
 
 Event* createEvent() {
-    std::string newName, newLocation, newFigure, newResult, newDescription;
-    int year;
+    std::string name, location, figure, results, description;
     unsigned day, month;
+    int year;
 
-    std::cout << "Enter Event name: ";
-    std::getline(std::cin, newName);
+    std::cout << "Enter event name: ";
+    std::getline(std::cin >> std::ws, name);
 
-    std::cout << "Enter Event location(s): ";
-    std::getline(std::cin, newLocation);
+    std::cout << "Enter event location: ";
+    std::getline(std::cin >> std::ws, location);
 
-    std::cout << "Enter key figure(s) of the event: ";
-    std::getline(std::cin, newFigure);
+    std::cout << "Enter historical figure: ";
+    std::getline(std::cin >> std::ws, figure);
 
-    std::cout << "Enter Event result: ";
-    std::getline(std::cin, newResult);
+    std::cout << "Enter results: ";
+    std::getline(std::cin >> std::ws, results);
 
-    std::cout << "Enter Event description: ";
-    std::getline(std::cin, newDescription);
+    std::cout << "Enter description: ";
+    std::getline(std::cin >> std::ws, description);
 
-    std::cout << std::endl << "Enter day, month, year: ";
+    std::cout << "Enter event date (DD MM YYYY): ";
     std::cin >> day >> month >> year;
 
-    auto newDate = std::chrono::year_month_day{std::chrono::year{year}, std::chrono::month{month}, std::chrono::day{day}};
-    auto newEvent = new Event{newDate, newName, newLocation, newFigure, newResult, newDescription};
+    normalizeDate(day, month, year);
 
-    return newEvent;
+    std::chrono::year_month_day date{
+        std::chrono::year{year},
+        std::chrono::month{month},
+        std::chrono::day{day}
+    };
+
+    return new Event(date, name, location, figure, results, description);
 }
 
 
@@ -168,10 +215,10 @@ Event* addSortedByDate(Event* head) {
 }
 
 
-void editEvent(Event*& head) {
-    Event* oldEvent = searchByName(head);
+void editEvent(Event*& event) {
+    Event* oldEvent = searchByName(event);
     Event* newEvent = createEvent();
-    Event* temp = head;
+    Event* temp = event;
 
     while (temp) {
         if (temp == oldEvent) {
