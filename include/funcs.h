@@ -6,4 +6,6 @@ void initializeEvents(Event*& head);
 
 int showMainMenu();
 
+int showReportsMenu();
+
 #endif //FUNCS_H

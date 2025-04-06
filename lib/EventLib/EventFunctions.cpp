@@ -277,6 +277,49 @@ Event* searchByName(Event* head) {
     return nullptr;
 }
 
+void searchEventsByYear(const Event* head) {
+    int year;
+    std::cout << "Enter year: ";
+    std::cin >> year;
+
+    bool found = false;
+    const Event* current = head;
+    while (current) {
+        if (static_cast<int>(current->date.year()) == year) {
+            printEvent(current);
+            found = true;
+        }
+        current = current->nextEvent;
+    }
+
+    if (!found) {
+        std::cout << "\033[1;31mNo events found for year " << year << ".\033[0m\n";
+    }
+}
+
+void searchEventsByFigure(const Event* head) {
+    std::string figure;
+    std::cout << "Enter figure: ";
+    std::getline(std::cin >> std::ws, figure);
+
+    bool found = false;
+    const Event* current = head;
+    while (current) {
+        if (current->figure == figure) {
+            printEvent(current);
+            found = true;
+        }
+        current = current->nextEvent;
+    }
+
+    if (!found) {
+        std::cout << "\033[1;31mNo events found for figure: " << figure << ".\033[0m\n";
+    }
+}
+
+
+
+
 Event* deleteEvent(Event* head) {
     Event* eventToDelete = searchByName(head);
 
@@ -302,6 +345,10 @@ Event* deleteEvent(Event* head) {
     std::cout << "Deleted" << "\n";
     return head;
 }
+
+
+
+
 
 
 

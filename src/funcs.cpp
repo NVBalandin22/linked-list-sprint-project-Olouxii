@@ -17,6 +17,19 @@ int showMainMenu() {
     cout << "6 Search event by date" << endl;
     cout << "7 Delete element" << endl;
     cout << "8 Show the whole list" << endl;
+    cout << "9 Reports" << endl;
+    cout << "Choose an option: ";
+
+    int user_answer;
+    cin >> user_answer;
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return user_answer;
+}
+
+int showReportsMenu() {
+    cout << "1 Short list" << endl;
+    cout << "2 Events that happened in the same year" << endl;
+    cout << "3 Events with the same key figure" << endl;
     cout << "Choose an option: ";
 
     int user_answer;

@@ -59,6 +59,33 @@ int main() {
                 printFullList(head);
                 break;
             }
+            case 9: {
+                bool inReportsMenu = true;
+                while (inReportsMenu) {
+                    switch (showReportsMenu()) {
+                        case 0: {
+                            inReportsMenu = false;
+                            break;
+                        }
+                        case 1: {
+                            printList(head);
+                            break;
+                        }
+                        case 2: {
+                            searchEventsByYear(head);
+                            break;
+                        }
+                        case 3: {
+                            searchEventsByFigure(head);
+                            break;
+                        }
+                        default: {
+                            cout << "Invalid input. Please try again.\n";
+                        }
+                    }
+                }
+                break;
+            }
             case -1: {
                 initializeEvents(head);
                 printFullList(head);

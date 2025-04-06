@@ -27,6 +27,10 @@ Event* searchByDate(Event* head);
 
 Event* searchByName(Event* head);
 
+void searchEventsByYear(const Event* head);
+
+void searchEventsByFigure(const Event* head);
+
 Event* deleteEvent(Event* head);
 
 void printList(const Event* head);
