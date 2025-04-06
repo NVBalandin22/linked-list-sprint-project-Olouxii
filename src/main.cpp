@@ -10,9 +10,10 @@ using namespace std;
 int main() {
     Event* head = nullptr;
 
+    loadEventsFromFile(head);
     cout << "Welcome to the OlouXii app!" << endl;
 
-    loadEventsFromFile(head);
+
 
     while (true) {
         switch (showMainMenu()) {

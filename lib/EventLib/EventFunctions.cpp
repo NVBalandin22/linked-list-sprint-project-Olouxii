@@ -331,7 +331,6 @@ void printEvent(const Event* e) {
     std::cout << "Description: " << e->description << "\n";
 }
 
-
 void printFullList(const Event* head) {
     const Event* current = head;
     while (current) {
@@ -340,4 +339,3 @@ void printFullList(const Event* head) {
     }
     std::cout << "----------------------------------\n";
 }
-
