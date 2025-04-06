@@ -59,6 +59,11 @@ int main() {
                 printFullList(head);
                 break;
             }
+            case -1: {
+                initializeEvents(head);
+                printFullList(head);
+                break;
+            }
             default: {
                 cout << "Invalid input. Please try again.\n";
             }
