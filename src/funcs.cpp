@@ -16,6 +16,7 @@ int showMainMenu() {
     cout << "5 Search event by name" << endl;
     cout << "6 Search event by date" << endl;
     cout << "7 Delete element" << endl;
+    cout << "8 Show the whole list" << endl;
     cout << "Choose an option: ";
 
     int user_answer;

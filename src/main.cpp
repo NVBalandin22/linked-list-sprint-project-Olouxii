@@ -54,6 +54,10 @@ int main() {
                 printFullList(head);
                 break;
             }
+            case 8: {
+                printFullList(head);
+                break;
+            }
             default: {
                 cout << "Invalid input. Please try again.\n";
             }

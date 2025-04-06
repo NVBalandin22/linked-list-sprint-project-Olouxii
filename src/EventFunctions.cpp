@@ -217,6 +217,9 @@ Event* addSortedByDate(Event* head) {
 
 void editEvent(Event*& event) {
     Event* oldEvent = searchByName(event);
+
+    if (!oldEvent) return;
+
     Event* newEvent = createEvent();
     Event* temp = event;
 
@@ -252,6 +255,8 @@ Event* searchByDate(Event* head) {
         }
         curr = curr->nextEvent;
     }
+    std::cout << "\033[1;31mEvent not found for this date.\033[0m\n";
+
     return nullptr;
 }
 
@@ -268,11 +273,13 @@ Event* searchByName(Event* head) {
         }
         curr = curr->nextEvent;
     }
+    std::cout << "Event not found with name: " << searchName << "\n";
     return nullptr;
 }
 
 Event* deleteEvent(Event* head) {
     Event* eventToDelete = searchByName(head);
+
     if (!head || !eventToDelete) return head;
 
     if (head == eventToDelete) {
@@ -292,7 +299,7 @@ Event* deleteEvent(Event* head) {
         curr->nextEvent = curr->nextEvent->nextEvent;
         delete temp;
     }
-
+    std::cout << "Deleted" << "\n";
     return head;
 }
 
