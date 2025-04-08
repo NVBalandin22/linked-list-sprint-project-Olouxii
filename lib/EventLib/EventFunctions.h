@@ -5,9 +5,9 @@
 
 void normalizeDate(unsigned& day, unsigned& month, int& year);
 
-void saveEventsToFile(Event* head);
+void saveEventsToFile(Event* head, const std::string& filename);
 
-void loadEventsFromFile(Event*& head);
+void loadEventsFromFile(Event*& head, const std::string& filename);
 
 Event* createEvent();
 

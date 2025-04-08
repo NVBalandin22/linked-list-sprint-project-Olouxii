@@ -2,6 +2,8 @@
 #define FUNCS_H
 #include "Event.h"
 
+std::string chooseTopic();
+
 void initializeEvents(Event*& head);
 
 int showMainMenu();

@@ -1,0 +1,56 @@
+681 7 1
+Founding of the First Bulgarian Empire
+Pliska
+Khan Asparuh
+Established
+Formation of the Bulgarian state
+---
+865 5 28
+Christianization of Bulgaria
+Preslav
+Prince Boris I
+Completed
+Conversion of Bulgarians to Christianity
+---
+1185 10 26
+Uprising of Asen and Peter
+Tarnovo
+Asen and Peter
+Started
+Reestablishment of the Bulgarian Empire
+---
+1876 4 20
+April Uprising
+Koprivshtitsa
+Georgi Benkovski
+Failed
+Revolt against Ottoman rule
+---
+1878 3 3
+Liberation of Bulgaria
+San Stefano
+Russian Empire
+Success
+End of Ottoman rule, start of independence
+---
+1908 9 22
+Declaration of Independence
+Veliko Tarnovo
+Ferdinand I
+Proclaimed
+Bulgaria officially becomes independent kingdom
+---
+1944 9 9
+Socialist Revolution
+Sofia
+Georgi Dimitrov
+Seized Power
+Establishment of communist regime
+---
+1990 6 10
+First Democratic Elections
+Bulgaria
+Zhelyu Zhelev
+Held
+End of communist rule and start of democracy
+---

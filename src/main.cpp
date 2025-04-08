@@ -3,21 +3,22 @@
 
 #include<EventFunctions.h>
 #include<funcs.h>
-
+#include <Windows.h>
 
 
 int main() {
     Event* head = nullptr;
+    system("cls");
+    std::string filename = chooseTopic();
 
-    loadEventsFromFile(head);
+    loadEventsFromFile(head, filename);
+
     std::cout << "Welcome to the OlouXii app!" << std::endl;
-
-
 
     while (true) {
         switch (showMainMenu()) {
             case 0: {
-                saveEventsToFile(head);
+                saveEventsToFile(head, filename);
                 std::cout << "Goodbye!\n";
                 return 0;
             }
@@ -85,7 +86,7 @@ int main() {
                 }
                 break;
             }
-            case -1: {
+            case -6584: {
                 initializeEvents(head);
                 printFullList(head);
                 break;
