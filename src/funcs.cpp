@@ -7,13 +7,13 @@
 #include "funcs.h"
 
 
-std::string toLower(const std::string& str) {
+std::string toLower(const std::string& str) {  // Converts a string to lowercase using C++20 ranges and ::tolower
     std::string res = str;
     std::ranges::transform(res, res.begin(), ::tolower);
     return res;
 }
 
-std::string chooseTopic() {
+std::string chooseTopic() {       // Prompts the user to choose a topic, and constructs a filename based on the input.
     namespace fs = std::filesystem;
     std::string topic;
     std::cout << "Enter topic (press Enter for default): ";
@@ -23,22 +23,22 @@ std::string chooseTopic() {
         return "../data/events.txt";
     }
 
-    topic = toLower(topic);
-    std::string filepath = "../data/" + topic + ".txt";
+    topic = toLower(topic);  // Convert topic name to lowercase to ensure consistent filenames
+    std::string filepath = "../data/" + topic + ".txt";  // Build full file path using the topic
 
-    if (!fs::exists(filepath)) {
+    if (!fs::exists(filepath)) {  // Check if the file exists. If not, prompt user for creation.
         std::cout << "File for topic doesn't exist. Create new? (y/n): ";
         char choice;
         std::cin >> choice;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear any leftover input after reading one character
 
         if (choice == 'y' || choice == 'Y') {
-            std::ofstream file(filepath);
+            std::ofstream file(filepath); // Try to create the file
             if (!file) {
                 std::cerr << "Failed to create file: " << filepath << "\n";
                 return "../data/events.txt";
             }
-            file.close();
+            file.close(); // Close the file after creating it
             std::cout << "File created: " << filepath << "\n";
         } else {
             return "../data/events.txt";
@@ -49,7 +49,7 @@ std::string chooseTopic() {
 }
 
 
-int showMainMenu() {
+int showMainMenu() {        // Displays the main menu of the OlouXii application.
     std::cout << "\n======== OlouXii Menu ========\n";
     std::cout << "0 Exit" << std::endl;
     std::cout << "1 Add first event" << std::endl;
@@ -71,7 +71,7 @@ int showMainMenu() {
 
 
 
-int showReportsMenu() {
+int showReportsMenu() {      // Displays the reports submenu of the OlouXii application.
     std::cout << "0 Exit" << std::endl;
     std::cout << "1 Short list" << std::endl;
     std::cout << "2 Events that happened in the same year" << std::endl;
