@@ -1,7 +1,20 @@
-2003 9 30
-name2
-loc2
-f2
-r2
-d2
+988 8 1
+Christianization of Kievan Rus
+Kyiv
+Volodymyr the Great
+Adoption of Christianity
+Volodymyr introduced Christianity as the state religion, transforming the culture and ties of Kievan Rus with Byzantium
 ---
+1223 5 31
+Battle of the Kalka River
+Kalchyk River
+Mstyslav of Galicia
+Defeat of Rus-Cumans by Mongols
+First major conflict between Mongol forces and Kievan Rus, marking the beginning of the Mongol threat
+---
+1569 7 1
+Union of Lublin
+Lublin
+Sigismund II Augustus
+Formation of Polish–Lithuanian Commonwealth
+Ukrainian lands were transferred to the Polish Crown, beginning a long period of Polish rule
