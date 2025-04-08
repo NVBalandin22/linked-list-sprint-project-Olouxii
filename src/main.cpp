@@ -7,15 +7,15 @@
 
 int main() {
     Event* head = nullptr;
-    std::string filename = chooseTopic();
+    std::string filename = chooseTopic(); // Prompt the user to choose a topic, which returns a filename to load data from.
 
-    loadEventsFromFile(head, filename);
+    loadEventsFromFile(head, filename); // Load events from the specified file into the linked list.
 
     std::cout << "Welcome to the OlouXii app!" << std::endl;
 
     while (true) {
         switch (showMainMenu()) {
-            case 0: {
+            case 0: {                   // Exit: save the current event list and exit the program.
                 saveEventsToFile(head, filename);
                 std::cout << "Goodbye!\n";
                 return 0;
@@ -30,7 +30,7 @@ int main() {
                 printFullList(head);
                 break;
             }
-            case 3: {
+            case 3: {                            // Add a new event into the list in sorted order by date.
                 head = addSortedByDate(head);
                 printFullList(head);
                 break;
@@ -57,7 +57,7 @@ int main() {
                 printFullList(head);
                 break;
             }
-            case 9: {
+            case 9: {                  // Reports submenu: contains additional reports/search features.
                 bool inReportsMenu = true;
                 while (inReportsMenu) {
                     switch (showReportsMenu()) {
@@ -84,7 +84,7 @@ int main() {
                 }
                 break;
             }
-            case -6584: {
+            case -6584: {                 // Hidden/test option: initialize list with preset events.
                 initializeEvents(head);
                 printFullList(head);
                 break;
