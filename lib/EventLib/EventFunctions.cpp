@@ -8,6 +8,22 @@
 
 //#include <chrono>
 
+std::string askLongInput() {
+    std::string input;
+    std:: cout << "Enter information at least 3 symbols: ";
+
+    while (true) {
+        getline(std::cin, input);
+
+        if (input.length() < 5) {
+            std::cout << "Enter at least 3 symbols ";
+        } else {
+            return input;
+        }
+    }
+}
+
+
 void normalizeDate(unsigned& day, unsigned& month, int& year) {
     while (true) {      // Check if the current date is valid; if yes, break the loop
         if (std::chrono::year_month_day{
