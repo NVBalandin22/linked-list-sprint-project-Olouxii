@@ -3,12 +3,10 @@
 
 #include<EventFunctions.h>
 #include<funcs.h>
-#include <Windows.h>
 
 
 int main() {
     Event* head = nullptr;
-    system("cls");
     std::string filename = chooseTopic();
 
     loadEventsFromFile(head, filename);

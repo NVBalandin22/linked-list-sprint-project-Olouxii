@@ -18,7 +18,7 @@ std::string chooseTopic() {
     std::string topic;
     std::cout << "Enter topic (press Enter for default): ";
     std::getline(std::cin, topic);
-    std::cout << topic;
+
     if (topic.empty()) {
         return "../data/events.txt";
     }
