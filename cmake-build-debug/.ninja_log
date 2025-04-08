@@ -1,6 +1,0 @@
-# ninja log v6
-10	2930	7658385179960154	CMakeFiles/linked_list_sprint_project_Olouxii.dir/src/main.cpp.obj	735d19cd7a03e564
-17	3383	7658385180020958	CMakeFiles/linked_list_sprint_project_Olouxii.dir/src/funcs.cpp.obj	249f582bf880e81d
-4	3600	7658385179891886	CMakeFiles/EventLib.dir/lib/EventLib/EventFunctions.cpp.obj	c0c754c225ed726e
-3600	3815	7658385215855439	libEventLib.a	9670aa85f9d43596
-3815	4445	7658385218010705	linked_list_sprint_project_Olouxii.exe	ce5267ebe5a7b791

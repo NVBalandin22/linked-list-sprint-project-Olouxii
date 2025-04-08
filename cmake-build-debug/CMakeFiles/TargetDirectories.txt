@@ -1,4 +1,0 @@
-C:/stoevHuilo/linked-list-sprint-project-Olouxii/cmake-build-debug/CMakeFiles/EventLib.dir
-C:/stoevHuilo/linked-list-sprint-project-Olouxii/cmake-build-debug/CMakeFiles/linked_list_sprint_project_Olouxii.dir
-C:/stoevHuilo/linked-list-sprint-project-Olouxii/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/stoevHuilo/linked-list-sprint-project-Olouxii/cmake-build-debug/CMakeFiles/rebuild_cache.dir
