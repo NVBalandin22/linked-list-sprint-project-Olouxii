@@ -38,3 +38,21 @@ Each event includes:
 | Denis Pirig        | Backend Developer  |
 
 ---
+## 📅 Development Stages
+
+1. 🤝 Form a team  
+2. 💡 Brainstorm and refine idea  
+3. 👨‍💻 Develop the application  
+4. ✅ Complete core functionality  
+5. 📝 Document the project  
+6. 🎤 Rehearse for final presentation  
+
+---
+
+## 📂 Technologies
+
+- **C++**
+- **File I/O**
+- **Linked Lists**
+
+---
