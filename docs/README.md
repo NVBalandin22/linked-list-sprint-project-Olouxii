@@ -21,3 +21,20 @@ Each event includes:
 - Detailed description
 
 ---
+## 🧠 Project Idea
+
+> A lightweight tool for educators, history buffs, or students to build and interact with historical timelines.
+
+---
+
+## 🧑‍💻 Team Members
+
+| Name               | Role               |
+|--------------------|--------------------|
+| Georgi Dimitrov    | QA                 |
+| Anna Rikova        | Backend Developer  |
+| Nikita Baladin     | Scrum Trainer      |
+| Valentin Nikolenko | Frontend Developer |
+| Denis Pirig        | Backend Developer  |
+
+---
