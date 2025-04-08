@@ -5,13 +5,12 @@
 #include<funcs.h>
 
 
-using namespace std;
 
 int main() {
     Event* head = nullptr;
 
     loadEventsFromFile(head);
-    cout << "Welcome to the OlouXii app!" << endl;
+    std::cout << "Welcome to the OlouXii app!" << std::endl;
 
 
 
@@ -19,7 +18,7 @@ int main() {
         switch (showMainMenu()) {
             case 0: {
                 saveEventsToFile(head);
-                cout << "Goodbye!\n";
+                std::cout << "Goodbye!\n";
                 return 0;
             }
             case 1: {
@@ -80,7 +79,7 @@ int main() {
                             break;
                         }
                         default: {
-                            cout << "Invalid input. Please try again.\n";
+                            std::cout << "Invalid input. Please try again.\n";
                         }
                     }
                 }
@@ -92,7 +91,7 @@ int main() {
                 break;
             }
             default: {
-                cout << "Invalid input. Please try again.\n";
+                std::cout << "Invalid input. Please try again.\n";
             }
         }
     }
