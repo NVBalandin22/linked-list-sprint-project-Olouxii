@@ -4,8 +4,8 @@
 #include <utility>
 
 #include <fstream>
-#include <sstream>
 
+//#include <sstream>
 //#include <chrono>
 
 void normalizeDate(unsigned& day, unsigned& month, int& year) {
@@ -237,6 +237,7 @@ void editEvent(Event*& event) {
         temp = temp->nextEvent;
     }
     printEvent(temp);
+    delete newEvent;
 }
 
 Event* searchByDate(Event* head) {
