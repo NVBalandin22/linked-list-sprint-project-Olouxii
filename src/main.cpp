@@ -7,6 +7,7 @@
 
 int main() {
     Event* head = nullptr;
+    listTxtFiles("../data");
     std::string filename = chooseTopic(); // Prompt the user to choose a topic, which returns a filename to load data from.
 
     loadEventsFromFile(head, filename); // Load events from the specified file into the linked list.

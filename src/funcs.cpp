@@ -7,6 +7,23 @@
 #include "funcs.h"
 
 
+void listTxtFiles(const std::string& folderPath = "../data") {
+    namespace fs = std::filesystem;
+
+    if (!fs::exists(folderPath) || !fs::is_directory(folderPath)) { //Check if path exists, if folder exists
+        std::cout << "Directory does not exist: " << folderPath << std::endl;
+        return;
+    }
+
+    std::cout << "Available topics:\n";
+    for (const auto& entry : fs::directory_iterator(folderPath)) { // Use iterator to go through the folder
+        if (entry.is_regular_file() && entry.path().extension() == ".txt") { //Check if it's file, not dir
+            std::string filename = entry.path().stem().string(); //Take only filename, without .txt
+            std::cout << "- " << filename << std::endl;
+        }
+    }
+}
+
 std::string toLower(const std::string& str) {  // Converts a string to lowercase using C++20 ranges and ::tolower
     std::string res = str;
     std::ranges::transform(res, res.begin(), ::tolower);
