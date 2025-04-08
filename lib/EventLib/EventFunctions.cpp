@@ -142,7 +142,7 @@ std::string askLongInput() { //Function to avoid incorrect input
         std::getline(std::cin >> std::ws, input);
 
         if (input.length() < 3) {
-            std::cout << "Enter at least 3 symbols ";
+            std::cout << "Enter at least 3 symbols:  ";
         } else {
             return input;
         }
@@ -168,8 +168,18 @@ Event* createEvent() { //Function for new Events.
     std::cout << "Enter description: ";
     std::string description = askLongInput();
 
-    std::cout << std::endl << "Enter event date (DD MM YYYY): ";
-    std::cin >> day >> month >> year;
+    while (true) { //Incorrect cin protection
+        std::cout << "\nEnter event date (DD MM YYYY): ";
+        std::cin >> day >> month >> year;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input. Please enter numeric values.\n";
+            continue;
+        }
+        break;
+    }
 
     normalizeDate(day, month, year);        // Normalize the date in case it is invalid
 
